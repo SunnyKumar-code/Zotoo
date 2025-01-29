@@ -41,7 +41,9 @@ width: 150px;
 .navbar li{
     cursor: pointer;
 }
-
+.user-info span{
+    margin: 10px;
+}
 .navbar-search-icon {
 position: relative;
 }
