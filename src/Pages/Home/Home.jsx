@@ -4,7 +4,8 @@ import Header from '../../components/Header/Header';
 import ExplorMenu from '../../components/ExplorMenu/ExplorMenu';
 import FoodDisplay from '../../components/FoodDisplay/FoodDisplay';
 import AppDownlod from '../../components/AppDownload/AppDownlod';
-import ChatBot from '../chatBot/chatBot';
+import ChatBot from '../chatBot/ChatBot';
+
 const Home = () => {
     const [category,setCategory]=useState("All")
     return (
