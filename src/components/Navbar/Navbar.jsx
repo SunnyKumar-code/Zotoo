@@ -7,7 +7,7 @@ import { auth, db } from '../Firebase/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { toast } from 'react-toastify';
-
+import { RiUserCommunityLine } from "react-icons/ri";
 const Navbar = ({ setShowLogin }) => {
     const [menu, setMenu] = useState("home");
     const [userData, setUserData] = useState(null); 
@@ -45,9 +45,7 @@ const Navbar = ({ setShowLogin }) => {
         try {
             await signOut(auth);
             setUserData(null);
-            toast.success("Successfully logged out!",{
-                position:"top-center"
-            }); 
+            // toast.success("Successfully logged out!"); 
         } catch (error) {
             toast.error("Error logging out. Please try again."); 
         }
@@ -63,7 +61,7 @@ const Navbar = ({ setShowLogin }) => {
                 <a href='#footer' onClick={() => { setMenu("contact-us") }} className={menu === "contact-us" ? "active" : ""}>Contact Us</a>
             </ul>
             <div className="navbar-right">
-                <img src={assets.search_icon} alt="" />
+           <Link to={"/community"}> <RiUserCommunityLine size={30} /></Link>
                 <div className="navbar-search-icon">
                     <Link to="/cart"><img src={assets.basket_icon} alt="" /></Link>
                     <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>

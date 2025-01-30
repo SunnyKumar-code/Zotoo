@@ -1,28 +1,26 @@
 import React, { useRef, useState, useEffect } from "react";
 import "./LoginPopUp.css";
 import { assets } from "../../assets/assets";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../Firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 
 const LoginPopUp = ({ setShowLogin }) => {
     const [currState, setCurrState] = useState("Login");
-    const [user, setUser] = useState(null); // Track user login state
+    const [user, setUser] = useState(null);
 
     const refName = useRef();
     const refEmail = useRef();
     const refPassword = useRef();
 
-    // Track user authentication state
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
         });
-        return () => unsubscribe(); // Cleanup listener on unmount
+        return () => unsubscribe();
     }, []);
 
-    // Handle Login & Registration
     const handleSubmit = async (e) => {
         e.preventDefault();
         const email = refEmail.current.value;
@@ -30,8 +28,10 @@ const LoginPopUp = ({ setShowLogin }) => {
         const name = refName.current ? refName.current.value : "";
 
         try {
+            // Dismiss all active toasts before showing a new one
+            toast.dismiss();
+
             if (currState === "Sign Up") {
-               
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const newUser = userCredential.user;
 
@@ -41,21 +41,18 @@ const LoginPopUp = ({ setShowLogin }) => {
                         name: name,
                     });
                 }
-                toast.success("User Registered Successfully!", { position: "top-center" });
+                // toast.success("User Registered Successfully!", { position: "top-center", autoClose: 3000 });
             } else {
-              
                 const userCredential = await signInWithEmailAndPassword(auth, email, password);
-                toast.success("Logged in Successfully!", { position: "top-center" });
+                // toast.success("Logged in Successfully!", { position: "top-center", autoClose: 3000 });
             }
 
-            setShowLogin(false); 
+            setShowLogin(false);
         } catch (error) {
             console.error("Error:", error);
-            toast.error(error.message, { position: "bottom-center" });
+            // toast.error(error.message, { position: "bottom-center", autoClose: 3000 });
         }
     };
-
-   
 
     return (
         <div className="login-popup">

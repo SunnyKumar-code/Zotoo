@@ -8,6 +8,8 @@ import Footer from "./components/Footer/Footer";
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
 import { ToastContainer } from "react-toastify";
 import { auth } from "./components/Firebase/firebase";
+import ChatBot from "./Pages/chatBot/chatBot";
+import Community from "./Pages/Community/Community";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -23,6 +25,7 @@ function App() {
           element={ <Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<PlaceOrder />} />
+          <Route path="/community" element={<Community/>} />
         </Routes>
         <ToastContainer/>
       </div>
