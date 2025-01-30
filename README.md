@@ -1,6 +1,6 @@
 # Zotoo
 
-Zotoo is a web application hosted on [Vercel](https://zotoo.vercel.app/) that provides user authentication functionality using Firebase.
+Zotoo is a web application hosted on [Vercel](https://zotoo.netlify.app/) that provides user authentication functionality using Firebase.
 
 ## Features
 
