@@ -7,8 +7,8 @@ import PlaceOrder from "./Pages/PlaceOrder/PlaceOrder";
 import Footer from "./components/Footer/Footer";
 import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
 import { ToastContainer } from "react-toastify";
-import { auth } from "./components/Firebase/firebase";
-import ChatBot from "./Pages/chatBot/chatBot";
+
+
 import Community from "./Pages/Community/Community";
 
 function App() {
