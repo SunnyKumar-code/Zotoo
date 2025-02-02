@@ -14,7 +14,7 @@ const Home = () => {
             <ExplorMenu category={category} setCategory={setCategory}/>  
             <FoodDisplay category={category}/>
             <ChatBot/>
-            <AppDownlod/>
+            {/* <AppDownlod/> */}
         </div>
     );
 }

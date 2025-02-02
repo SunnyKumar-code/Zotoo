@@ -17,8 +17,9 @@ function App() {
   return (
     <>
     {showLogin?<LoginPopUp  setShowLogin={setShowLogin} />:<></>}
+    <Navbar setShowLogin={setShowLogin} />
       <div className="app">
-        <Navbar setShowLogin={setShowLogin} />
+       
         <Routes>
           <Route 
           path="/" 
