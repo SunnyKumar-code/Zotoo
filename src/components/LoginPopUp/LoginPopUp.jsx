@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import "./LoginPopUp.css";
 import { assets } from "../../assets/assets";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, updateProfile } from "firebase/auth";
 import { auth, db } from "../Firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
@@ -35,22 +35,57 @@ const LoginPopUp = ({ setShowLogin }) => {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const newUser = userCredential.user;
 
-                if (newUser) {
-                    await setDoc(doc(db, "Users", newUser.uid), {
-                        email: newUser.email,
-                        name: name,
-                    });
+                // Update the user's display name in Firebase Auth
+                if (name) {
+                    try {
+                        await updateProfile(newUser, { displayName: name });
+                    } catch (profileError) {
+                        console.error("Error updating profile:", profileError);
+                    }
                 }
-                // toast.success("User Registered Successfully!", { position: "top-center", autoClose: 3000 });
+
+                if (newUser) {
+                    try {
+                        await setDoc(doc(db, "Users", newUser.uid), {
+                            email: newUser.email,
+                            name: name,
+                        });
+                    } catch (firestoreError) {
+                        console.error("Firestore error:", firestoreError);
+                        // Continue with the sign-up process even if Firestore fails
+                        if (firestoreError.code === 'permission-denied' || firestoreError.message.includes('Missing or insufficient permissions')) {
+                            toast.warning("User created but profile data couldn't be saved to database. Some features may be limited.", {
+                                position: "top-center",
+                                autoClose: 5000
+                            });
+                        }
+                    }
+                }
+                toast.success("User Registered Successfully!", { position: "top-center", autoClose: 3000 });
             } else {
                 const userCredential = await signInWithEmailAndPassword(auth, email, password);
-                // toast.success("Logged in Successfully!", { position: "top-center", autoClose: 3000 });
+                toast.success("Logged in Successfully!", { position: "top-center", autoClose: 3000 });
             }
 
             setShowLogin(false);
         } catch (error) {
             console.error("Error:", error);
-            // toast.error(error.message, { position: "bottom-center", autoClose: 3000 });
+
+            // Provide more user-friendly error messages
+            let errorMessage = error.message;
+            if (error.code === 'auth/network-request-failed') {
+                errorMessage = "Network error. Please check your internet connection.";
+            } else if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                errorMessage = "Invalid email or password.";
+            } else if (error.code === 'auth/email-already-in-use') {
+                errorMessage = "This email is already registered. Please login instead.";
+            } else if (error.code === 'auth/weak-password') {
+                errorMessage = "Password is too weak. Please use a stronger password.";
+            } else if (error.code === 'auth/invalid-email') {
+                errorMessage = "Invalid email format.";
+            }
+
+            toast.error(errorMessage, { position: "bottom-center", autoClose: 3000 });
         }
     };
 
