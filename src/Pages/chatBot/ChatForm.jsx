@@ -1,52 +1,34 @@
 import React, { useRef, useState } from 'react'
 import './chatBot.css'
+import { FaPaperPlane } from 'react-icons/fa';
 
-export default function ChatForm({ setChatHistory, generateBotResponse, sendIcon }) {
+export default function ChatForm({ onSubmit }) {
   const inputRef = useRef();
-  const [isTyping, setIsTyping] = useState(false);
+  const [message, setMessage] = useState('');
 
-  const handleFormSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const userMessage = inputRef.current.value.trim();
-    if (!userMessage) return;
+    if (message.trim() === '') return;
 
-    inputRef.current.value = "";
-    setIsTyping(false);
-
-    setChatHistory((prevHistory) => {
-      const updatedHistory = [...prevHistory, { role: 'user', text: userMessage }];
-
-      generateBotResponse(updatedHistory);
-
-      return updatedHistory;
-    });
-
-    setTimeout(() => {
-      setChatHistory((prevHistory) => [...prevHistory, { role: 'model', text: 'Thinking...' }]);
-    }, 600);
-  };
-
-  const handleInputChange = (e) => {
-    setIsTyping(e.target.value.trim().length > 0);
+    onSubmit(message);
+    setMessage('');
+    inputRef.current.focus();
   };
 
   return (
-    <form action="#" className='chat-form' onSubmit={handleFormSubmit}>
+    <form className="chatbot-form" onSubmit={handleSubmit}>
       <input
+        type="text"
         ref={inputRef}
-        type='text'
-        placeholder='Ask about our menu, delivery options...'
-        className="message-input"
-        onChange={handleInputChange}
-        required
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder="Type your message..."
+        className="chatbot-input"
+        autoFocus
       />
-      <button
-        type="submit"
-        className={`send-button ${isTyping ? 'active' : ''}`}
-        aria-label="Send message"
-      >
-        {sendIcon || "Send"}
+      <button type="submit" className="send-button" disabled={message.trim() === ''}>
+        <FaPaperPlane />
       </button>
     </form>
-  )
+  );
 }
