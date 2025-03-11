@@ -1,0 +1,53 @@
+:root {
+  /* Light theme (default) */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --text-primary: #333333;
+  --text-secondary: #49557e;
+  --accent-color: tomato;
+  --border-color: #e0e0e0;
+  --card-bg: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --input-bg: #ffffff;
+  --navbar-bg: #ffffff;
+  --footer-bg: #f9f9f9;
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+  --hover-bg: #fff4f2;
+  --dropdown-bg: #ffffff;
+}
+
+.dark-theme {
+  /* Dark theme */
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --text-primary: #f5f5f5;
+  --text-secondary: #b0b0b0;
+  --accent-color: #ff6347;
+  --border-color: #333333;
+  --card-bg: #1e1e1e;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --input-bg: #2d2d2d;
+  --navbar-bg: #1a1a1a;
+  --footer-bg: #1a1a1a;
+  --overlay-bg: rgba(0, 0, 0, 0.8);
+  --hover-bg: #2a2a2a;
+  --dropdown-bg: #2d2d2d;
+}
+
+/* Transition for smooth theme switching */
+body,
+.navbar,
+.navbarmain,
+.header,
+.footer,
+.login-popup,
+.login-popup-container,
+.food-item,
+.food-item-card,
+input,
+button,
+.user-dropdown,
+.user-avatar:hover {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease;
+}

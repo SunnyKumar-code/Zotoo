@@ -4,11 +4,15 @@ import ChatForm from './ChatForm';
 import ChatMessage from './ChatMessage';
 import { FaUtensils, FaRobot, FaPaperPlane } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
+import useScrollLock from '../../hooks/useScrollLock';
 
 export default function ChatBot() {
     const [isOpen, setIsOpen] = useState(false);
     const [chatHistory, setChatHistory] = useState([]);
     const chatBodyRef = useRef();
+    
+    // Lock scroll when chatbot is open on mobile devices
+    useScrollLock(isOpen && window.innerWidth <= 768);
 
     const toggleChatbot = () => {
         setIsOpen(!isOpen);
@@ -40,11 +44,30 @@ export default function ChatBot() {
         }
     };
 
+    // Scroll to bottom whenever chat history changes
     useEffect(() => {
-        if (chatBodyRef.current) {
-            chatBodyRef.current.scrollTo({ top: chatBodyRef.current.scrollHeight, behavior: "smooth" });
-        }
+        scrollToBottom();
     }, [chatHistory]);
+
+    // Scroll to bottom when chat is opened
+    useEffect(() => {
+        if (isOpen) {
+            setTimeout(scrollToBottom, 300); // Add delay to ensure animation completes
+        }
+    }, [isOpen]);
+
+    const scrollToBottom = () => {
+        if (chatBodyRef.current) {
+            const scrollHeight = chatBodyRef.current.scrollHeight;
+            const height = chatBodyRef.current.clientHeight;
+            const maxScrollTop = scrollHeight - height;
+            
+            chatBodyRef.current.scrollTo({
+                top: maxScrollTop,
+                behavior: 'smooth'
+            });
+        }
+    };
 
     return (
         <div className='chat-container'>
@@ -75,6 +98,7 @@ export default function ChatBot() {
                         {chatHistory.map((chat, index) => (
                             <ChatMessage key={index} chat={chat} />
                         ))}
+                        <div className="scroll-anchor" />
                     </div>
                     <div className="chat-footer">
                         <ChatForm 

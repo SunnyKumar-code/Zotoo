@@ -1,0 +1,22 @@
+/* Home page styles */
+.home-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ensure content is centered on all screen sizes */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 0;
+    overflow-x: hidden;
+  }
+}
+
+/* Fix for very small screens */
+@media (max-width: 480px) {
+  .home-container {
+    width: 100%;
+  }
+}

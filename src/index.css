@@ -1,26 +1,114 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+* {
   padding: 0;
-  margin: 0;box-sizing: border-box;
+  margin: 0;
+  box-sizing: border-box;
   font-family: outfit;
   scroll-behavior: smooth;
 }
-body{
-  min-height: 100vh;
+
+html {
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
 }
-a{
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Fix for mobile viewport issues */
+@viewport {
+  width: device-width;
+  zoom: 1;
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+
+/* Hide horizontal scrollbar */
+body::-webkit-scrollbar-horizontal {
+  display: none;
+}
+
+/* Customize vertical scrollbar */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #e74c3c;
+}
+
+a {
   text-decoration: none;
   color: inherit;
 }
-.app{
+
+.app {
   width: 80%;
   margin: auto;
+  overflow-x: hidden;
+  max-width: 1400px;
+  background-color: var(--bg-primary);
 }
+
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .app {
+    width: 90%;
+  }
+}
+
 @keyframes fadeIn {
-  0%{
+  0% {
     opacity: 0%;
   }
-  100%{
+  100% {
     opacity: 1;
   }
+}
+
+/* Add styles for Footer */
+.footer {
+  background-color: var(--footer-bg);
+  color: var(--text-primary);
+}
+
+/* Add styles for food items */
+.food-item,
+.food-item-card {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+/* Add styles for inputs and buttons */
+input,
+select,
+textarea {
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
 }

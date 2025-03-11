@@ -2,19 +2,21 @@
   position: sticky;
   top: 0;
   z-index: 2;
-  width: 100vw;
-  background: #ffffff;
+  width: 100%;
+  background: var(--navbar-bg);
   display: flex;
   justify-content: center;
+  overflow-x: hidden;
+  box-shadow: 0 2px 10px var(--shadow-color);
 }
 .navbar {
   width: 80%;
-
-  background: #ffffff;
+  background: var(--navbar-bg);
   padding: 20px 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1400px;
 }
 .navbar .logo {
   width: 150px;
@@ -23,30 +25,35 @@
   display: flex;
   list-style: none;
   gap: 20px;
-  color: #49557e;
+  color: var(--text-secondary);
   font-size: 18px;
+}
+.navbar-menu a {
+  color: var(--text-secondary);
+  text-decoration: none;
 }
 .navbar-right {
   display: flex;
   align-items: center;
   gap: 40px;
+  color: var(--text-secondary);
 }
 .navbar button {
   background: transparent;
   font-family: 16px;
-  color: #49557e;
-  border: 1px solid tomato;
+  color: var(--text-secondary);
+  border: 1px solid var(--accent-color);
   padding: 10px 13px;
   border-radius: 50px;
   cursor: pointer;
-  transition: 0.3;
+  transition: 0.3s;
 }
 .navbar button:hover {
-  background-color: #fff4f2;
+  background-color: var(--hover-bg);
 }
 .navbar .active {
   padding-bottom: 2px;
-  border-bottom: 2px solid #49557e;
+  border-bottom: 2px solid var(--text-secondary);
 }
 .navbar li {
   cursor: pointer;
@@ -112,6 +119,7 @@
 /* User profile styles */
 .user-profile {
   position: relative;
+  color: var(--text-primary) !important;
 }
 
 .user-avatar {
@@ -122,10 +130,11 @@
   padding: 5px 10px;
   border-radius: 20px;
   transition: background-color 0.2s;
+  color: var(--text-primary) !important;
 }
 
 .user-avatar:hover {
-  background-color: #f5f5f5;
+  background-color: var(--hover-bg) !important;
 }
 
 .user-name {
@@ -134,73 +143,12 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--text-primary) !important;
 }
 
-.user-dropdown {
-  position: absolute;
-  top: 45px;
-  right: 0;
-  width: 220px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-  overflow: hidden;
-  animation: dropdown-appear 0.2s ease-out;
-}
-
-@keyframes dropdown-appear {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.user-dropdown .user-info {
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.user-dropdown .user-info span {
-  color: #666;
-  font-size: 12px;
-  margin: 0;
-}
-
-.user-dropdown .user-info strong {
-  font-size: 14px;
-  word-break: break-all;
-}
-
-.dropdown-divider {
-  height: 1px;
-  background-color: #eee;
-  margin: 0;
-}
-
-.logout-btn {
-  width: 100%;
-  text-align: left;
-  padding: 12px 15px !important;
-  border: none !important;
-  border-radius: 0 !important;
-  color: #e74c3c !important;
-  font-weight: 500;
-  transition: background-color 0.2s;
-}
-
-.logout-btn:hover {
-  background-color: #fff4f2 !important;
-}
-
+/* Signin button styles */
 .signin-btn {
-  background-color: #ff5a3c !important;
+  background-color: var(--accent-color) !important;
   color: white !important;
   font-weight: 500;
   padding: 8px 20px !important;
@@ -210,4 +158,24 @@
 
 .signin-btn:hover {
   background-color: #e74c3c !important;
+  opacity: 0.9;
+}
+
+/* Theme toggle button */
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  transform: rotate(30deg);
+  background-color: var(--hover-bg) !important;
 }

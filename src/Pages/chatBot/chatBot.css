@@ -59,6 +59,20 @@
   background: #f8f9fa;
   display: flex;
   flex-direction: column;
+  scroll-behavior: smooth;
+  overflow-anchor: none;
+}
+
+.chat-body::after {
+  content: "";
+  padding-bottom: 10px;
+}
+
+.scroll-anchor {
+  float: left;
+  clear: both;
+  height: 1px;
+  width: 100%;
 }
 
 .message {

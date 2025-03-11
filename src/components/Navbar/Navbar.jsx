@@ -9,11 +9,15 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { toast } from 'react-toastify';
 import { RiUserCommunityLine } from "react-icons/ri";
 import { FaUserCircle } from "react-icons/fa";
+import { MdLightMode, MdDarkMode } from "react-icons/md";
+import { ThemeContext } from '../../context/ThemeContext';
+import UserDropdown from '../UserDropdown/UserDropdown';
 
 const Navbar = ({ setShowLogin }) => {
     const [menu, setMenu] = useState("home");
     const [userData, setUserData] = useState(null);
     const [showUserMenu, setShowUserMenu] = useState(false);
+    const { isDarkMode, toggleTheme } = useContext(ThemeContext);
 
     const { getTotalCartAmount } = useContext(StoreContext);
 
@@ -80,20 +84,6 @@ const Navbar = ({ setShowLogin }) => {
         }
     };
 
-    // Close user menu when clicking outside
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (showUserMenu && !event.target.closest('.user-profile')) {
-                setShowUserMenu(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [showUserMenu]);
-
     return (
         <div className="navbarmain">
             <div className="navbar">
@@ -105,29 +95,36 @@ const Navbar = ({ setShowLogin }) => {
                     <a href='#footer' onClick={() => { setMenu("contact-us") }} className={menu === "contact-us" ? "active" : ""}>Contact Us</a>
                 </ul>
                 <div className="navbar-right">
-                    <Link to={"/community"}> <RiUserCommunityLine size={30} /></Link>
+                    <button className="theme-toggle-btn" onClick={toggleTheme} aria-label="Toggle theme">
+                        {isDarkMode ? <MdLightMode size={22} /> : <MdDarkMode size={22} />}
+                    </button>
+                    <Link to={"/community"}>
+                        <RiUserCommunityLine size={30} style={{ color: 'var(--text-primary)' }} />
+                    </Link>
                     <div className="navbar-search-icon">
-                        <Link to="/cart"><img src={assets.basket_icon} alt="" /></Link>
+                        <Link to="/cart">
+                            <img
+                                src={assets.basket_icon}
+                                alt="Cart"
+                                style={{ filter: isDarkMode ? 'invert(1)' : 'none' }}
+                            />
+                        </Link>
                         <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
                     </div>
 
                     {userData ? (
                         <div className="user-profile">
                             <div className="user-avatar" onClick={() => setShowUserMenu(!showUserMenu)}>
-                                <FaUserCircle size={30} />
+                                <FaUserCircle size={30} style={{ color: 'var(--text-primary)' }} />
                                 <span className="user-name">{userData.name || userData.email.split('@')[0]}</span>
                             </div>
 
-                            {showUserMenu && (
-                                <div className="user-dropdown">
-                                    <div className="user-info">
-                                        <span>Signed in as</span>
-                                        <strong>{userData.email}</strong>
-                                    </div>
-                                    <div className="dropdown-divider"></div>
-                                    <button onClick={handleLogout} className="logout-btn">Logout</button>
-                                </div>
-                            )}
+                            <UserDropdown
+                                userData={userData}
+                                onLogout={handleLogout}
+                                isOpen={showUserMenu}
+                                onClose={() => setShowUserMenu(false)}
+                            />
                         </div>
                     ) : (
                         <button onClick={() => setShowLogin(true)} className="signin-btn">Sign in</button>

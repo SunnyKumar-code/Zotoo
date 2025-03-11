@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthState
 import { auth, db } from "../Firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
+import useScrollLock from "../../hooks/useScrollLock";
 
 const LoginPopUp = ({ setShowLogin }) => {
     const [currState, setCurrState] = useState("Login");
@@ -13,6 +14,9 @@ const LoginPopUp = ({ setShowLogin }) => {
     const refName = useRef();
     const refEmail = useRef();
     const refPassword = useRef();
+
+    // Lock scroll when login popup is shown
+    useScrollLock(true);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
