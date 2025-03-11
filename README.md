@@ -1,32 +1,64 @@
-# Zotoo
+# Food Delivery App
 
-Zotoo is a web application hosted on [Vercel](https://zotoo.netlify.app/) that provides user authentication functionality using Firebase.
+A modern, responsive food delivery web application built with React and Firebase. This app allows users to browse food items, add them to cart, place orders, and interact with a helpful chatbot assistant.
 
-## Features
+## 🍔 Features
 
-- User registration (Sign Up)
-- User login (Sign In)
-- Firebase Authentication
-- Firestore database integration
-- Responsive UI
-- Chatbot for user assistance
-- Community page for discussions
+- **User Authentication**
 
-## Technologies Used
+  - Sign up and login functionality
+  - User profile management
+  - Secure authentication with Firebase
 
-- React.js
-- Firebase Authentication & Firestore
-- React Toastify (for notifications)
-- CSS (for styling)
-- Vercel (for deployment)
+- **Food Ordering System**
 
-## Installation & Setup
+  - Browse food items by category
+  - Add items to cart
+  - Adjust quantities
+  - Place orders
+
+- **Interactive UI**
+
+  - Responsive design for all devices
+  - Dark/Light mode toggle
+  - Smooth animations and transitions
+
+- **Chatbot Assistant**
+
+  - AI-powered food assistant
+  - Get help with menu, delivery, and payment options
+  - Real-time conversation interface
+
+- **Community Page**
+  - Share food experiences
+  - Interact with other users
+  - Food-related discussions
+
+## 🛠️ Technologies Used
+
+- **Frontend**
+
+  - React.js (with Hooks and Context API)
+  - React Router for navigation
+  - CSS for styling
+  - React Icons for UI elements
+  - React Toastify for notifications
+
+- **Backend**
+
+  - Firebase Authentication
+  - Firestore Database
+  - Firebase Functions
+
+- **Build Tools**
+  - Vite for fast development and building
+  - ESLint for code quality
+
+## 🚀 Installation & Setup
 
 ### Prerequisites
 
-Ensure you have the following installed:
-
-- Node.js
+- Node.js (v14 or higher)
 - npm or yarn
 
 ### Steps to Run Locally
@@ -34,63 +66,109 @@ Ensure you have the following installed:
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/SunnyKumar-code/zotoo.git
-   cd zotoo
+   git clone https://github.com/SunnyKumar-code/food-delivery-app.git
+   cd food-delivery-app
    ```
 
 2. Install dependencies:
 
    ```sh
-   npm install  
+   npm install
    # or
    yarn install
    ```
 
 3. Set up Firebase:
 
-   - Create a Firebase project at Firebase Console
+   - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
    - Enable Authentication (Email/Password)
    - Create a Firestore database
-   - Get Firebase configuration and create a `.env` file in the project root:
-     ```env
-     REACT_APP_FIREBASE_API_KEY=your_api_key
-     REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
-     REACT_APP_FIREBASE_PROJECT_ID=your_project_id
-     REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-     REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-     REACT_APP_FIREBASE_APP_ID=your_app_id
-     ```
+   - Replace the Firebase configuration in `src/components/Firebase/firebase.js` with your own
 
-4. Run the application:
+4. Run the development server:
 
    ```sh
-   npm start
+   npm run dev
+   # or
+   yarn dev
    ```
 
-   The app will run at `http://localhost:3000/`
+5. Open your browser and navigate to `http://localhost:5173`
 
-## Deployment
+## 🏗️ Project Structure
 
-To deploy on Vercel:
+```
+food-delivery-app/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── AppDownload/
+│   │   ├── ExplorMenu/
+│   │   ├── Firebase/
+│   │   ├── FoodDisplay/
+│   │   ├── FoodItem/
+│   │   ├── Footer/
+│   │   ├── Header/
+│   │   ├── LoginPopUp/
+│   │   ├── Navbar/
+│   │   └── UserDropdown/
+│   ├── context/
+│   │   ├── StoreContext.jsx
+│   │   └── ThemeContext.jsx
+│   ├── hooks/
+│   ├── Pages/
+│   │   ├── Cart/
+│   │   ├── chatBot/
+│   │   ├── Community/
+│   │   ├── Home/
+│   │   └── PlaceOrder/
+│   ├── styles/
+│   ├── App.jsx
+│   └── main.jsx
+├── .eslintrc.json
+├── index.html
+├── package.json
+├── README.md
+└── vite.config.js
+```
 
-1. Install Vercel CLI:
+## 🌐 Deployment
+
+The app is deployed on Vercel. You can view the live version at [Live Demo](https://zotoo-d9a4znqt3-sunnykumar-codes-projects.vercel.app/)
+
+To deploy your own version:
+
+1. Create a Vercel account at [vercel.com](https://vercel.com)
+2. Install Vercel CLI:
    ```sh
    npm install -g vercel
    ```
-2. Deploy:
+3. Deploy:
    ```sh
    vercel
    ```
 
-## Live Demo
+## 🧩 Future Enhancements
 
-Check out the live version: [Zotoo](https://zotoo.vercel.app/)
+- Payment gateway integration
+- Order tracking system
+- User reviews and ratings
+- Personalized recommendations
+- Admin dashboard for restaurant owners
 
-## License
+## 👨‍💻 Contributors
 
-This project is licensed under the MIT License.
+- [Sunny Kuamr](https://github.com/SunnyKumar-code)
 
-## Contact
+## 📄 License
 
-For any queries, feel free to reach out.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 🙏 Acknowledgements
+
+- [React](https://reactjs.org/)
+- [Firebase](https://firebase.google.com/)
+- [Vite](https://vitejs.dev/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [React Toastify](https://fkhadra.github.io/react-toastify/)
