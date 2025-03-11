@@ -127,14 +127,17 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  padding: 5px 10px;
-  border-radius: 20px;
-  transition: background-color 0.2s;
+  padding: 8px 15px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
   color: var(--text-primary) !important;
+  border: 1px solid transparent;
 }
 
 .user-avatar:hover {
   background-color: var(--hover-bg) !important;
+  border: 1px solid var(--border-color);
+  transform: translateY(-2px);
 }
 
 .user-name {
@@ -151,14 +154,18 @@
   background-color: var(--accent-color) !important;
   color: white !important;
   font-weight: 500;
-  padding: 8px 20px !important;
+  padding: 10px 25px !important;
   border: none !important;
-  transition: background-color 0.2s;
+  border-radius: 30px !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(255, 99, 71, 0.3);
 }
 
 .signin-btn:hover {
   background-color: #e74c3c !important;
-  opacity: 0.9;
+  opacity: 0.95;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 99, 71, 0.4);
 }
 
 /* Theme toggle button */
@@ -166,16 +173,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px !important;
+  padding: 10px !important;
   border-radius: 50% !important;
-  border: none !important;
+  border: 1px solid var(--border-color) !important;
   background-color: var(--bg-secondary) !important;
   color: var(--text-primary) !important;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 5px var(--shadow-color);
 }
 
 .theme-toggle-btn:hover {
-  transform: rotate(30deg);
+  transform: rotate(30deg) scale(1.1);
   background-color: var(--hover-bg) !important;
+  box-shadow: 0 4px 8px var(--shadow-color);
 }

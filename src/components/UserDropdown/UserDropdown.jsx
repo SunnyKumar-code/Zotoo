@@ -40,15 +40,22 @@ const UserDropdown = ({ userData, onLogout, isOpen, onClose }) => {
                     width: '220px',
                     backgroundColor: 'var(--dropdown-bg)',
                     color: 'var(--text-primary)',
-                    borderRadius: '8px',
-                    boxShadow: '0 2px 10px var(--shadow-color)',
+                    borderRadius: '16px',
+                    boxShadow: '0 4px 20px var(--shadow-color)',
                     zIndex: 9999,
                     overflow: 'hidden',
                     animation: 'dropdown-appear 0.2s ease-out',
                     border: '1px solid var(--border-color)'
                 }}
             >
-                <div className="user-info" style={{ padding: '15px', display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                <div className="user-info" style={{
+                    padding: '18px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '5px',
+                    borderTopLeftRadius: '16px',
+                    borderTopRightRadius: '16px'
+                }}>
                     <span style={{ color: 'var(--text-secondary)', fontSize: '12px', margin: 0 }}>Signed in as</span>
                     <strong style={{ color: 'var(--text-primary)', fontSize: '14px', wordBreak: 'break-all' }}>
                         {userData.email}
@@ -60,14 +67,16 @@ const UserDropdown = ({ userData, onLogout, isOpen, onClose }) => {
                     style={{
                         width: '100%',
                         textAlign: 'left',
-                        padding: '12px 15px',
+                        padding: '15px 18px',
                         border: 'none',
                         borderRadius: 0,
                         color: 'var(--accent-color)',
                         fontWeight: 500,
                         backgroundColor: 'transparent',
                         cursor: 'pointer',
-                        transition: 'background-color 0.2s'
+                        transition: 'background-color 0.2s',
+                        borderBottomLeftRadius: '16px',
+                        borderBottomRightRadius: '16px'
                     }}
                     onMouseOver={(e) => e.target.style.backgroundColor = 'var(--hover-bg)'}
                     onMouseOut={(e) => e.target.style.backgroundColor = 'transparent'}

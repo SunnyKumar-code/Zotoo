@@ -1,11 +1,23 @@
 @keyframes dropdown-appear {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-15px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 4px 20px var(--shadow-color);
+  }
+  50% {
+    box-shadow: 0 4px 25px var(--shadow-color);
+  }
+  100% {
+    box-shadow: 0 4px 20px var(--shadow-color);
   }
 }
 
@@ -21,4 +33,5 @@
 
 .user-dropdown-portal {
   pointer-events: auto;
+  animation: dropdown-appear 0.3s ease-out, pulse 3s infinite ease-in-out !important;
 }
